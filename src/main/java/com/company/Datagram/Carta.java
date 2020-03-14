@@ -8,10 +8,15 @@ import static com.company.Datagram.DatagramSocketClient.baraja;
 import static com.company.Datagram.DatagramSocketClient.portDesti;
 
 public class Carta {
+    /** @param listaCartas en esta lista estan todas las cartas
+     *  @param tipo el tipo puede ser Diamantes, Picas, Corazones o treboles.
+     *  @param valor el valor es de 1 a 13, del 11 al 13 se cambiaran a J, Q, K y su valor sera de 10 puntos
+     *  @param puntosTotales en puntosTotales se iran acumulando los puntos de las cartas al cojerlas**/
     public static List<Carta> listaCartas = new ArrayList<>();
 
     String tipo;
     String valor;
+
     public static int puntosTotales;
 
     public Carta(String valor, String tipo){
@@ -26,7 +31,8 @@ public class Carta {
         System.out.println("Te ha tocado un "+listaCartas.get(numCartaRandom).valor+"-"+listaCartas.get(numCartaRandom).tipo);
         puntosTotales = 0;
 
-        for (Carta carta : baraja) {
+        for (int i = 0; i < baraja.size(); i++) {
+            Carta carta = baraja.get(i);
             if (carta.valor.equals("J") || carta.valor.equals("Q") || carta.valor.equals("K")) {
                 puntosTotales += 10;
             } else {
